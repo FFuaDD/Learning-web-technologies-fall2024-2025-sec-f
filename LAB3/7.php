@@ -17,7 +17,16 @@ for ($i = 3; $i >= 1; $i--) {
 }
  
 echo "<br>"; 
- 
+
+
+$array = ['A', 'B', 'C', 'D', 'E', 'F'];
+$index = 0;
+for ($i = 1; $i <= 3; $i++) {
+    for ($j = 1; $j <= 4 - $i; $j++) {
+        echo $array[$index++] . " ";
+    }
+    echo "<br>";
+}
 
 
 ?>

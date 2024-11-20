@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
         header('location: email.html');
     } else {
      
-        echo "Welcome Home";
+        echo"Hello! Your email is ", $name;
     }
 }
 ?>

@@ -5,11 +5,17 @@
 <body>
     <fieldset>
         <legend>BLOOD GROUP</legend>
-        <form method="post" action="nameCheck.php" enctype="">
-            <select name="">
-                <option value="">A+</option>
-                <option selected value="">B+</option>
-                <option value="">AB+</option>
+        <form method="post" action="bloodgrpCheck.php" enctype="">
+            <select name="bloodgroup">
+                <option value="">select</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
             </select>
              <hr>
                     <input type="submit" name="submit" value="Submit" />

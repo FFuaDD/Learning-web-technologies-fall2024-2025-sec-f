@@ -1,17 +1,26 @@
 <html>
-<head>
-    <title> GENDER</title>
-</head>
-<body>
+  <header>
+    <title>Gender </title>
+  </header>
+  <body>
+   <form method="post" action="gendercheck.php" enctype="">
     <fieldset>
         <legend>GENDER</legend>
-        <form method="post" action="gendercheck.php" enctype="">
-            <input type="radio" name="" value=""/> Male 
-            <input type="radio" name="" value=""/> Female 
-            <input type="radio" name="" value=""/> Other 
-             <hr>
-                    <input type="submit" name="submit" value="Submit" />
-        </form>
+      <table>
+        <tr>
+        
+            <input type="radio" name="gender" value=""> Male 
+            <input type="radio" name="gender" value=""> Female 
+            <input type="radio" name="gender" value=""> Others 
+            <hr></hr>
+            <input type="submit" name="submit" value="Submit">
+        
+        </tr>
+
+       </table>
+     
     </fieldset>
-</body>
+    
+   </form>
+  </body>
 </html>

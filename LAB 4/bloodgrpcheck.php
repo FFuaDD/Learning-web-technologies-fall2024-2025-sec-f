@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
         echo "Please select a Blood Group please.";
     }else
     {
-        header('location:degree.html');
+        header('location:bloodgrp.html');
     }
 }
 ?>

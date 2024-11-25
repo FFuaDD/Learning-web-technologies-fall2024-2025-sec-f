@@ -2,14 +2,21 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-    $name = $_REQUEST['name'];
-    $password = $_REQUEST['password'];
 
-    if (isset($_SESSION['users'])) {
+    $name = trim($_REQUEST['name'] );
+    $password = trim($_REQUEST['password'] );
+
+
+    if (isset($_SESSION['users']) && is_array($_SESSION['users'])) {
         $userFound = false;
 
+    
         foreach ($_SESSION['users'] as $user) {
-            if ($user['name'] === $name && $user['password'] === $password) {
+            if (
+                is_array($user) && 
+                isset($user['name'], $user['password']) && 
+                $user['name'] === $name && $user['password'] === $password 
+            ) {
                 $_SESSION['logged_in_user'] = $name;
                 $userFound = true;
                 break;
@@ -17,16 +24,18 @@ if (isset($_POST['submit'])) {
         }
 
         if ($userFound) {
-            header('location:details.php');
+            header('location:details.php'); 
+            exit;
         } else {
-            echo "Invalid  name or password.";
-            header('location:login.html');
+            echo "Invalid name or password.";
+            exit;
         }
     } else {
         echo "No users registered.";
-        header('location:login.html');
+        exit;
     }
 } else {
-    header('location:login.html');
+    header('location:login.html'); 
+    exit;
 }
 ?>

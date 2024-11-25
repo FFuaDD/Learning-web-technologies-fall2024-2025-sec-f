@@ -17,8 +17,9 @@ if (isset($_POST['submit'])) {
     foreach ($_SESSION['users'] as $user) {
         if (
             is_array($user) && 
-            ( isset($user['email']) && $user['email'] === $email)
-            ) 
+            (isset($user['name']) && $user['name'] === $name || 
+             isset($user['email']) && $user['email'] === $email)
+        ) 
          {
             echo "User with this name or email is already registered.";
             exit;

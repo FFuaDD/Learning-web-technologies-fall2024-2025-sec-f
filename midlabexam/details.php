@@ -1,28 +1,38 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['logged_in_user'])) {
     header('location: login.html');
     exit;
 }
 
 
-$email = $_SESSION['logged_in_user'];
+$name = $_SESSION['logged_in_user'];
+$userFound = false;
 
 
-if (isset($_SESSION['users'][$email])) {
-    $user = $_SESSION['users'][$email];
-    $name = $user['name'];
-    $email = $user['email'];
+if (isset($_SESSION['users']) && is_array($_SESSION['users'])) {
+    foreach ($_SESSION['users'] as $user) {
+        if (
+            is_array($user) &&
+            isset($user['name'], $user['email']) &&
+            $user['name'] === $name
+        ) {
+            $email = $user['email'];
+            $userFound = true;
+            break;
+        }
+    }
+}
 
-    $pswrd = $user['password'];
 
+if ($userFound) {
     echo "<h2>Welcome to the Home Page!</h2>";
-    echo " Name: $name<br>";
+    echo "Name: $name<br>";
     echo "Email: $email<br>";
-    echo "Password: $password<br>";
 } else {
-    echo "User not found!";
+    echo "<h2>User not found!</h2>";
 }
 ?>
-<a href="logout.php">Logout</a>
+<br><a href="logout.php">Click Here To Logout</a>

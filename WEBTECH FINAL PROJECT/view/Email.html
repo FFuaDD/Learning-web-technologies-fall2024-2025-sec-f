@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+ 
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+ 
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+ 
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+ 
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+ 
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+ 
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+ 
+        button:hover {
+            background-color: #0056b3;
+        }
+ 
+        #successMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            text-align: center;
+        }
+ 
+        @media (max-width: 480px) {
+            form {
+                padding: 15px;
+            }
+ 
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="contactForm" action="javascript:void(0);">
+        <h2>Contact Us</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+ 
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+ 
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+ 
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+ 
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" cols="50" required minlength="10" maxlength="500"></textarea>
+ 
+        <label for="contact_method">Preferred Contact Method:</label>
+        <select id="contact_method" name="contact_method" required>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+        </select>
+ 
+        <button type="submit">Submit</button>
+    </form>
+ 
+    <div id="successMessage">Contact information submitted successfully.</div>
+ 
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+ 
+            var formData = new FormData(this);
+ 
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../controller/submit_contact.php", true);
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                   
+                    if (response.success) {
+                        document.getElementById("successMessage").style.display = "block";
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                }
+            };
+ 
+            xhttp.send(formData);
+        });
+    </script>
+</body>
+</html>
